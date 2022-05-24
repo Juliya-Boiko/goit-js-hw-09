@@ -20,14 +20,16 @@ const options = {
         if (selectedDates[0].getTime() < new Date().getTime()) {
             Notify.failure('Please choose a date in the future');
         } else {
-            refs.startBtn.removeAttribute('disabled');
+            refs.startBtn.disabled = false;
+            clearInterval(intervalId);
+            updateCounter({days: '00', hours: '00', minutes: '00', seconds: '00'});
         }
     },
 };
 
 let intervalId = null;
 const fp = flatpickr(refs.picker, options);
-refs.startBtn.setAttribute('disabled', 'false');
+// refs.startBtn.disabled = true;
 
 function convertMs(ms) {
     const second = 1000;
