@@ -18,11 +18,13 @@ const options = {
     minuteIncrement: 1,
     onClose(selectedDates) {
         if (selectedDates[0].getTime() < new Date().getTime()) {
+            refs.startBtn.disabled = true;
             Notify.failure('Please choose a date in the future');
+            updateCounter({days: 0, hours: 0, minutes: 0, seconds: 0});
         } else {
             refs.startBtn.disabled = false;
             clearInterval(intervalId);
-            updateCounter({days: '00', hours: '00', minutes: '00', seconds: '00'});
+            updateCounter({days: 0, hours: 0, minutes: 0, seconds: 0});
         }
     },
 };
